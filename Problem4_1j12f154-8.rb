@@ -5,12 +5,12 @@ require 'colored'
 def random_words_hit_game( time = 20 )
     puts "\n英単語を当てるゲームです。\n\n英単語の語の順序がバラバラになっているので、それを正しく順番を直して入力してください。\n\nなお、以下の問題は#{time}秒以内に答えてください。間違えるとヒントも少しあります。\n\nそれでは10秒後にスタートします。"
     sleep 10
-    filename = ARGV[0]                 # コマンドの第1引数を filname に代入
-    file = open(filename)              # filname にある名前のファイルを開く
+    filename = ARGV[0]
+    file = open(filename)
     i = 1
     miss_count = 0
     qestion_count = 10
-    while fileText = file.gets()           # file から1行読み込み
+    while fileText = file.gets()
         message = nil
         hint_count = 1
         problem = fileText.split(",")
@@ -52,7 +52,7 @@ def random_words_hit_game( time = 20 )
     ans_rate = ((qestion_count - miss_count) * 100 ) / qestion_count
     puts "終了！"
     puts "あなたの正解率は？\n #{ans_rate} %".red.bold
-    file.close                        # ファイルを閉じる
+    file.close
 end
 
-random_words_hit_game(1)
+random_words_hit_game()
