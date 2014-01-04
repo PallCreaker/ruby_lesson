@@ -27,20 +27,12 @@ def random_words_hit_game( time = 20 )
                     a_words = STDIN.gets()
                     if a_words.chomp == problem[0]
                         puts message = "good!"
-                    elsif hint_count > 2
-                        puts "もうヒントはありません"
                     else
-                        puts "はずれです。\nヒントを見ますか?見る方は'yes'を見ない方は'no'を入力してください。"
-                        hint_if = STDIN.gets()
-                        if hint_if.chomp == "yes"
-                            puts "これで最後のヒントです。" if hint_count == 2
-                            puts "ヒントは #{problem[hint_count].chomp}"
-                            hint_count += 1
-                        elsif hint_if.chomp == "no"
-                            next
-                        else
-                            puts "yes か no でお願いします。"
-                        end
+                        puts "はずれです。".red
+                        puts "これで最後のヒントです。" if hint_count == 2
+                        puts "ヒントは #{problem[hint_count].chomp}" if hint_count < 3
+                        puts "もうヒントはありません。" if hint_count > 2
+                        hint_count += 1
                     end
                 end
             }
