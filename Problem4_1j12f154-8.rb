@@ -6,10 +6,11 @@ def random_words_hit_game()
     filename = ARGV[0]                 # コマンドの第1引数を filname に代入
     file = open(filename)              # filname にある名前のファイルを開く
     i = 1
-    time = 10
+    time = 2
+    miss_count = 0
+    qestion_count = 10
     while fileText = file.gets()           # file から1行読み込み
         message = nil
-        i += 1
         hint_count = 1
         problem = fileText.split(",")
         qestion_words = problem[0].split(//).shuffle
@@ -18,6 +19,7 @@ def random_words_hit_game()
             print " #{word} "
         end
         puts "\n"
+        i += 1
         begin
             timeout(time){
                 while message != "good!"
@@ -43,11 +45,12 @@ def random_words_hit_game()
             }
         rescue Timeout::Error
             puts "Timeout!"
+            miss_count += 1
         end
     end
-
+    ans_rate = ((qestion_count - miss_count) * 100 ) / qestion_count
     p "終了！"
-    p "あなたの正解率は？"
+    p "あなたの正解率は？#{ans_rate} %"
     file.close                        # ファイルを閉じる
 end
 
