@@ -46,5 +46,4 @@ def random_words_hit_game( time = 20 )
     puts "あなたの正解率は？\n #{ans_rate} %".red.bold
     file.close
 end
-
 random_words_hit_game()
